@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="page-header"><h1>Account Settings</h1></div>
+    </div>
+</div>
+<div class="row">
+    <div class="row" id="signup">
+        <div class="col-sm-6">
+            <div class="page-header"><h1>Create A New Project</h1></div>
+            <form name="createProjectForm">
+                <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+                <div class="form-group" ng-class="{'has-error': hasError(signupForm.projectName)}">
+                    <label class="control-label" for="projectName">Pick a Project name:</label>
+                    <input type="text" name="projectName" id="projectName" class="form-control" ng-model="newProject.project_name" required server-error>
+                    <span class="help-block" ng-show="showError(signupForm.projectName, 'required')">This field is required</span>
+                    <span class="help-block" ng-show="showError(signupForm.projectName, 'server')">{{errfor.projectName}}</span>
+                </div>
+                <div class="form-group" ng-class="{'has-error': hasError(signupForm.description)}">
+                    <label class="control-label" for="description">Describe your project:</label>
+                    <textarea name="description" id="description" class="form-control" ng-model="newProject.project_description" required server-error></textarea>
+                    <span class="help-block" ng-show="showError(signupForm.description, 'required')">This field is required</span>
+                    <span class="help-block" ng-show="showError(signupForm.description, 'description')">Please enter a valid description</span>
+                    <span class="help-block" ng-show="showError(signupForm.description, 'server')">{{errfor.description}}</span>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary btn-signup" ng-click="createProject()">Create My Account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
